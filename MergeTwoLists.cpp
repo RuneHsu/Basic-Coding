@@ -79,3 +79,26 @@ Node* mergeLists(Node *l1, Node *l2)
     *prev = &(*prev)->next;
     return head;
 }
+
+
+// recursive way
+Node MergeLists(Node *l1, Node *l2)
+{
+    if (l1 == NULL)
+        return l2;
+    else if (l2 == NULL)
+        return l1;
+    
+    Node *head = NULL;
+    if (l1->val < l2->val)
+    {
+        head = l1;
+        head->next = MergeLists(l1->next, l2);
+    }
+    else
+    {
+        head = l2;
+        head->next = MergeLists(l1, l2->next);
+    }
+    return head;
+}
